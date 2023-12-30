@@ -1,0 +1,21 @@
+e-commerce-microservices/
+│
+├── catalog_microservice/
+│   ├── __init__.py
+│   ├── models.py
+│   └── routes.py
+│
+├── user_microservice/
+│   ├── __init__.py
+│   ├── models.py
+│   └── routes.py
+│
+├── order_microservice/
+│   ├── __init__.py
+│   ├── models.py
+│   └── routes.py
+│
+├── app.py
+├── config.py
+├── requirements.txt
+└── run.py
