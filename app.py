@@ -1,20 +1,27 @@
-from flask import Flask, request, jsonify
-from models import db, Product
+# app.py
+from flask import Flask
+from config import DevelopmentConfig
+from catalog_microservice.routes import catalog_bp
+from user_microservice.routes import user_bp
+from order_microservice.routes import order_bp
+from catalog_microservice.models import db as catalog_db
+from user_microservice.models import db as user_db
+from order_microservice.models import db as order_db
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///catalog.db'
-db.init_app(app)
+app.config.from_object(DevelopmentConfig)
 
-@app.route('/products', methods=['GET'])
-def get_products():
-    products = Product.query.all()
-    product_list = [{'id': product.id, 'name': product.name, 'price': product.price} for product in products]
-    return jsonify({'products': product_list})
+app.register_blueprint(catalog_bp, url_prefix='/catalog')
+app.register_blueprint(user_bp, url_prefix='/user')
+app.register_blueprint(order_bp, url_prefix='/order')
 
-@app.route('/products', methods=['POST'])
-def create_product():
-    data = request.get_json()
-    new_product = Product(name=data['name'], description=data.get('description'), price=data['price'])
-    db.session.add(new_product)
-    db.session.commit()
-    return jsonify({'message': 'Product created successfully'}), 201
+catalog_db.init_app(app)
+user_db.init_app(app)
+order_db.init_app(app)
+
+if __name__ == '__main__':
+    with app.app_context():
+        catalog_db.create_all()
+        user_db.create_all()
+        order_db.create_all()
+    app.run(debug=True)
