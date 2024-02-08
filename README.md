@@ -1,27 +1,47 @@
-# mkdir-e-commerce-microservices
-Microservice 1: Product Catalog Management
+Product Catalog Service:
 
-Objective:
-The primary objective of this microservice is to handle the product catalog, allowing users to retrieve a list of products and add new products to the catalog.
-
+Objective: Manages the product catalog, providing endpoints to retrieve a list of products and add new products.
 Key Features:
-
 Product Retrieval:
-
 Endpoint: /products (GET)
-Retrieves a list of products from the product catalog.
 Product Creation:
-
 Endpoint: /products (POST)
-Allows users to add new products to the catalog by providing product details such as name, description, and price.
 Technologies Used:
-
 Backend Framework: Flask (Python)
 Database: SQLAlchemy (SQLite for simplicity in the example)
-Version Control: Git
-Project Structure:
+Product Recommendation Service:
 
-models.py: Defines the database model for the product catalog.
-app.py: Main application file containing the Flask application and routes for product management.
-venv/: Virtual environment for dependency management.
-requirements.txt: Lists project dependencies.
+Objective: Provides recommendations for products based on user preferences, purchase history, etc.
+Key Features:
+Recommend similar products based on product details, user behavior, or collaborative filtering algorithms.
+Technologies Used:
+Backend Framework: Flask (Python)
+Recommendation Algorithm Implementation
+Interaction with Product Catalog Service (for accessing product details)
+Product Review Service:
+
+Objective: Handles product reviews and ratings.
+Key Features:
+Allow users to submit reviews and ratings for products.
+Retrieve product reviews and ratings.
+Technologies Used:
+Backend Framework: Flask (Python)
+Database: SQLAlchemy (SQLite for simplicity in the example)
+Product Inventory Service:
+
+Objective: Manages product inventory, tracking stock levels, and availability.
+Key Features:
+Check product availability.
+Update stock levels.
+Technologies Used:
+Backend Framework: Flask (Python)
+Database: SQLAlchemy (SQLite for simplicity in the example)
+Product Pricing Service:
+
+Objective: Manages product pricing, including discounts, promotions, and dynamic pricing strategies.
+Key Features:
+Set and update product prices.
+Apply discounts and promotions.
+Technologies Used:
+Backend Framework: Flask (Python)
+Database: SQLAlchemy (SQLite for simplicity in the example)
